@@ -14,12 +14,15 @@ function solveEquation(a, b, c) {
 }
 
 function calculateTotalMortgage(percent, contribution, amount, countMonths) {
-  let monthPercent = (percent / 100) / 12;
-  let creditBody = amount - contribution;
-  let payment = creditBody * (monthPercent + (monthPercent / (((1 + monthPercent)** countMonths) - 1)))
-  let total = payment * countMonths;
-  if (total !== 0){
-	total = parseFloat(total.toFixed(2))
-  }
-  return total
+	if (isNaN(percent) || isNaN(contribution) || isNaN(amount) || isNaN(countMonths)) {
+		return false
+	}
+	let monthPercent = (percent / 100) / 12;
+	let creditBody = amount - contribution;
+	let monthPayment = creditBody * (monthPercent + (monthPercent / (((1 + monthPercent) ** countMonths) - 1)))
+	let payment = monthPayment * countMonths;
+	if (payment != 0) {
+		payment = parseFloat(payment.toFixed(2))
+	}
+	return payment;
 }
