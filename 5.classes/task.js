@@ -3,12 +3,12 @@ class PrintEditionItem {
 		this.name = name;
 		this.releaseDate = releaseDate;
 		this.pagesCount = pagesCount;
-		this._state = 100;
+		this.state = 100;
 		this.type = null;
 	}
 
 	fix(){
-		this._state *= 1.5;
+		this.state *= 1.5;
 	}
 
 	set state(newState) {
@@ -43,21 +43,21 @@ class Book extends PrintEditionItem{
 
 class NovelBook extends Book{
 	constructor(author, name, releaseDate, pagesCount){
-		super(name, releaseDate, pagesCount, author)
+		super(author, name, releaseDate, pagesCount);
 		this.type = 'novel';
 	}
 }
 
 class FantasticBook extends Book{
 	constructor(author, name, releaseDate, pagesCount){
-		super(name, releaseDate, pagesCount, author)
+		super(author, name, releaseDate, pagesCount);
 		this.type = 'fantastic';
 	}
 }
 
 class DetectiveBook extends Book{
 	constructor(author, name, releaseDate, pagesCount){
-		super(name, releaseDate, pagesCount, author)
+		super(author, name, releaseDate, pagesCount);
 		this.type = 'detective';
 	}
 }
