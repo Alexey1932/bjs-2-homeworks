@@ -63,3 +63,58 @@ class DetectiveBook extends Book{
 		this.type = 'detective';
 	}
 }
+
+class Library{
+	constructor(name){
+		this.name = name;
+		this.books = [];
+	}
+
+	addBook(book) {
+		if (book.state > 30) {
+			this.books.push(book);
+		}
+	}
+
+	findBookBy(type, value){
+		let searchedBook = this.books.find(i => i[type] === value);
+		return searchedBook ? searchedBook : null;
+	}
+
+	giveBookByName(bookName){
+		let searchedBook = this.books.find(i => i.name === bookName);
+		if(searchedBook){
+			this.books.splice(this.books.indexOf(searchedBook), 1)
+			return searchedBook
+		}
+		return null;
+	}
+}
+
+class Student {
+	constructor(name){
+	this.name = name;
+	this.marks = {};
+	}
+ 
+	addMark(mark, subject) {
+	 if (mark > 2 && mark < 5){
+		if (!this.marks[subject]){
+			this.marks[subject] = [];
+		}
+		this.marks[subject].push(mark)
+	}
+ }
+
+ 	getAverageBySubject(subject){
+		if (!this.marks[subject]){
+			return null;
+		}
+		let sum = this.marks[subject].reduce((a, b) => a + b, 0)
+		return sum/this.marks[subject].length
+	}
+
+	getAverage(){
+		return Object.keys(this.marks).reduce((a, b) => a + this.getAverageBySubject(b), 0)
+	}
+}
