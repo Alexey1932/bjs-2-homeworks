@@ -97,24 +97,30 @@ class Student {
 
 
 	addMark(mark, subject) {
-		if (mark >= 2 && mark <= 5) {
-			if (!(Object.keys(this.marks).includes(subject))) {
-				this.marks[subject] = [];
-			}
-			this.marks[subject].push(mark)
-		}
-	}
+		if (mark < 2 || mark > 5) {
+			console.log("Оценка должна быть от 2 до 5");
+			return;
+		 }
+	
+		 if (!(subject in this.marks)) {
+			this.marks[subject] = [];
+		 }
+	
+		 this.marks[subject].push(mark);
+	  }
 
 	getAverageBySubject(subject) {
-		if (Object.keys(this.marks).includes(subject) === false) {
+		if (!(subject in this.marks)) {
 			return 0;
-		}
-		else {
-			return (this.marks[subject].reduce((a, b) => a + b, 0)) / this.marks[subject].length
-		}
-	}
+		 }
+	
+		 return (this.marks[subject].reduce((a, b) => a + b, 0)) / marks.length;
+	  }
 
 	getAverage() {
+		if (Object.keys(this.marks).length === 0) {
+			return 0;
+		}
 		return (Object.keys(this.marks).reduce((a, b) => a + this.getAverageBySubject(b), 0)) / Object.keys(this.marks).length;
 	}
 }
