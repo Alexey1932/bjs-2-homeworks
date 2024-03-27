@@ -114,7 +114,7 @@ class Student {
 			return 0;
 		 }
 	
-		 return (this.marks[subject].reduce((a, b) => a + b, 0)) / marks.length;
+		 return (this.marks[subject].reduce((a, b) => a + b, 0)) / this.marks[subject].length;
 	  }
 
 	getAverage() {
