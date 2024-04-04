@@ -15,7 +15,7 @@ class AlarmClock{
 	}
 
 	removeClock(time){
-		this.alarmCollection.filter(item => item.time !== time)
+		return this.alarmCollection = this.alarmCollection.filter(item => item.time !== time)
 	}
 
 	getCurrentFormattedTime() {
@@ -32,8 +32,8 @@ class AlarmClock{
 		}
 		this.intervalID = setInterval(() => {
 			this.alarmCollection.forEach(i => {
-				if(i.time === this.getCurrentFormattedTime() && i.canCall === true){
-					i.canCall === false;
+				if(i.time === this.getCurrentFormattedTime() && i.canCall){
+					i.canCall = false;
 					i.callback();
 				}
 				}
@@ -43,7 +43,7 @@ class AlarmClock{
 
 	stop(){
 		clearInterval(this.intervalID);
-		this.intervalID = 0;
+		this.intervalID = null;
 	}
 
 	resetAllCalls(){
@@ -52,6 +52,6 @@ class AlarmClock{
 
 	clearAlarms(){
 		this.stop();
-		this.alarmCollection = []
+		return this.alarmCollection = []
 	}
 }
