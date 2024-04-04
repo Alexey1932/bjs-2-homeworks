@@ -30,15 +30,14 @@ class AlarmClock{
 		if(this.intervalID){
 			return;
 		}
-		this.intervalID = setInterval(() => {
+		this.intervalID = setInterval(() => 
 			this.alarmCollection.forEach(i => {
 				if(i.time === this.getCurrentFormattedTime() && i.canCall){
 					i.canCall = false;
 					i.callback();
 				}
 				}
-				 )
-				}, 1000)
+				 ), 1000)
 	}
 
 	stop(){
